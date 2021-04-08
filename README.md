@@ -1,11 +1,6 @@
-# Complexity
+# Complexity 
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/CSC-510/Complexity.svg)](https://greenkeeper.io/)
-[![build](https://travis-ci.org/CSC-510/Complexity.svg?branch=master)](https://travis-ci.org/CSC-510/Complexity)
-[![dependencies Status](https://david-dm.org/CSC-510/Complexity/status.svg)](https://david-dm.org/CSC-510/Complexity)
-[![devDependencies Status](https://david-dm.org/CSC-510/Complexity/dev-status.svg)](https://david-dm.org/CSC-510/Complexity?type=dev)
-
-In this workshop, you'll be implementing simple algorithms for checking basic properties of code complexity.
+In this lab, you'll be implementing simple algorithms for checking basic properties of code complexity.
 
 Two design patterns are of importance here:
 * A [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern), which is used to build up state and then finally emit.
@@ -13,15 +8,14 @@ Two design patterns are of importance here:
 
 ### Esprima
 
-Instead of building a scanner and parser by hand like we [demonstrated previously](https://github.com/CSC-DevOps/Parsing). We will use an existing library, [esprima](http://esprima.org/), to parse code and create a static analyzer for basic code complexity metrics.
+Writing programs to do static code analysis on Javascript is easier now than ever, thanks to [esprima](http://esprima.org/) - the Javascript parser library. We will practice how to use esprima to do something fairly simple – measure basic code complexity metrics of JavaScript programs. 
 
 ##### Video
-If you have not already watched this video, you can get more background about Esprima here:
+This video provides more background about esprima:
 Watch [5:00-14:30,28:00-34:00](https://www.youtube.com/watch?v=ACYZFkvq0Sk).
 
-##### Interactive AST
-
-Use the [demo page](http://esprima.org/demo/parse.html) to see what a code snippet looks like, in order to help you navigate the data structure.
+##### Interactive Abstract Syntax Tree (AST)
+Use the [demo page](http://esprima.org/demo/parse.html) to see what a code snippet looks like, in order to help you navigate the data structure. Better to open in a separate browser tab, as you will need to work with it for coding inspiration.
 
 For example, the following snippet:
 
@@ -43,7 +37,7 @@ Will appear as following, and:
 
 **Can be [interacted with here](http://esprima.org/demo/parse.html?code=function%20functionName(%20node%20)%0A%7B%0A%09if(%20node.id%20)%0A%09%7B%0A%09%09return%20node.id.name%3B%0A%09%7D%0A%09return%20%22anon%20function%20%40%22%20%2B%20node.loc.start.line%3B%0A%7D)**.
 
-### Workshop
+### Lab activities:
 
 The repository contains a stub that parses a javascript file and visits each function. 
 
@@ -53,19 +47,21 @@ The repository contains a stub that parses a javascript file and visits each fun
       node analysis.js
    ```
 
-2. Do a simple calculation
+2. Do a simple calculation (2 Points Each) 
 
-   * **String Usage**: How many string literals are used in file? (FileBuilder)
-   * **ParameterCount**: The number of parameters for functions (FunctionBuilder)
+   a) **ParameterCount**: The number of parameters for functions (FunctionBuilder)
+   b) **String Usage**: How many string literals are used in file? (FileBuilder)
 
-3. Using multiple visitors.
+3. Using multiple visitors (2 Points Each) 
 
-   * **SimpleCyclomaticComplexity**: The number of if statements/loops + 1.
+   a) **SimpleCyclomaticComplexity**: The number of if statements/loops + 1.
+   b) **MaxConditions**: The max number of condition predicates (expressions seperated by `||`, `&&`) in an if statement.
 
-4. Advanced (using parents/etc):
+4. (SKIP THIS) Check build status on Travis-CI when committing each new function. Submit a screenshot of the final build. (2 Points) 
 
-   * **MaxConditions**: The max number of conditions in one statement.
-   * **MaxNestingDepth**: The max depth of scopes (nested ifs, loops, etc) -- this one is hard, only expect a few to get to do finish this one.
+5. Advanced (2 Extra Points)  
+
+   a) **MaxNestingDepth**: The max depth of scopes (nested ifs, loops, etc) -- this one is hard, only expect a few to get to do finish this one (using parents/etc).
 
 
 
