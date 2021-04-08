@@ -1,6 +1,7 @@
-# Complexity 
+# Complexity & Travis-CI Lab
+[![Build Status](https://travis-ci.org/willescamilla/Complexity.svg?branch=dependabot/npm_and_yarn/lodash-4.17.19)](https://travis-ci.org/willescamilla/Complexity)
 
-In this lab, you'll be implementing simple algorithms for checking basic properties of code complexity.
+In this lab, you'll be implementing simple algorithms for checking basic properties of code complexity, and working with Travis-CI for Continuous Integration.
 
 Two design patterns are of importance here:
 * A [Builder pattern](https://en.wikipedia.org/wiki/Builder_pattern), which is used to build up state and then finally emit.
@@ -57,7 +58,7 @@ The repository contains a stub that parses a javascript file and visits each fun
    a) **SimpleCyclomaticComplexity**: The number of if statements/loops + 1.
    b) **MaxConditions**: The max number of condition predicates (expressions seperated by `||`, `&&`) in an if statement.
 
-4. (SKIP THIS) Check build status on Travis-CI when committing each new function. Submit a screenshot of the final build. (2 Points) 
+4. Check build status on Travis-CI when committing each new function. Submit a screenshot of the final build. (2 Points) 
 
 5. Advanced (2 Extra Points)  
 

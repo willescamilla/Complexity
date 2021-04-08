@@ -99,6 +99,22 @@ function traverseWithParents(object, visitor)
     }
 }
 
+function countConditions(node)
+{
+	var count = 0;
+	traverseWithParents(node, function(node) 
+	{
+		if ((node.type === "LogicalExpression") && ((node.operator === "&&") || (node.operator === "||")))
+		{
+			count++;
+		}
+	});
+	if (count > 0) {
+		count++;
+	}
+	return count;
+}
+
 function complexity(filePath)
 {
 	var buf = fs.readFileSync(filePath, "utf8");
@@ -120,11 +136,30 @@ function complexity(filePath)
 			var builder = new FunctionBuilder();
 
 			builder.FunctionName = functionName(node);
-			builder.StartLine    = node.loc.start.line;
+			builder.StartLine = node.loc.start.line;
+			builder.ParameterCount = node.params.length;
 
 			builders[builder.FunctionName] = builder;
+
+			var conditions = new Array();
+
+			traverseWithParents(node , function (node) {
+				if (isDecision(node) === true) {
+					builder.SimpleCyclomaticComplexity += 1;
+					var temp = countConditions(node);
+					conditions.push(temp);
+				}
+
+			});
+
+			if (conditions.length > 0){
+				builder.MaxConditions = Math.max.apply(Math, conditions);
+			}
 		}
 
+		if (node.type === 'Literal') {
+			fileBuilder.Strings += 1;
+		}
 	});
 
 }
